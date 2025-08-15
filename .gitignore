@@ -28,3 +28,7 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+*.tsbuildinfo
+
+docs/.vitepress/cache/

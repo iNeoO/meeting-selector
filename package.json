@@ -1,75 +1,23 @@
 {
-  "name": "vue-meeting-selector",
-  "version": "3.1.0",
-  "author": "Valère Pique <pique.valere@gmx.fr>",
-  "main": "./dist/lib/vue-meeting-selector.umd.js",
-  "module": "./dist/vue-meeting-selector.mjs",
-  "files": [
-    "dist",
-    "src/interfaces",
-    "src/helpers"
-  ],
-  "exports": {
-    ".": {
-      "import": "./dist/vue-meeting-selector.mjs",
-      "require": "./dist/vue-meeting-selector.umd.js"
-    },
-    "./dist/style.css": "./dist/style.css",
-    "./src/helpers/slotsGenerator.js": "./src/helpers/slotsGenerator.js",
-    "./src/helpers/slotsGenerator.ts": "./src/helpers/slotsGenerator.ts",
-    "./src/interfaces/CalendarOptions.interface.ts": "./src/interfaces/CalendarOptions.interface.ts",
-    "./src/interfaces/ClassNames.interface.ts": "./src/interfaces/ClassNames.interface.ts",
-    "./src/interfaces/MeetingsDay.interface.ts": "./src/interfaces/MeetingsDay.interface.ts",
-    "./src/interfaces/MeetingSlot.interface.ts": "./src/interfaces/MeetingSlot.interface.ts",
-    "./src/interfaces/Time.interface.ts": "./src/interfaces/Time.interface.ts"
-  },
-  "keywords": [
-    "vue",
-    "vuejs",
-    "meeting-selector",
-    "schedule-selector",
-    "selector",
-    "web-components"
-  ],
-  "private": false,
-  "license": "MIT",
+  "name": "meeting-selector",
+  "version": "1.0.0",
+  "description": "Monorepo for meeting-selector components",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc --declaration --emitDeclarationOnly && vite build",
-    "preview": "vite preview",
-    "test:unit": "vitest --environment jsdom --root src/",
-    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+    "dev:vue-meeting-selector": "pnpm --filter vue-meeting-selector dev & pnpm --filter vue-meeting-selector-dev dev ",
+    "dev:react-meeting-selector": "pnpm --filter react-meeting-selector dev & pnpm --filter react-meeting-selector-dev dev",
+    "build:vue-meeting-selector": "pnpm --filter vue-meeting-selector build",
+    "build:vue-meeting-selector-dev": "pnpm --filter vue-meeting-selector-dev build",
+    "build:react-meeting-selector": "pnpm --filter react-meeting-selector build",
+    "build:react-meeting-selector-dev": "pnpm --filter react-meeting-selector-dev build",
+    "dev:docs": "pnpm --filter doc-meeting-selector dev",
+    "build:docs": "pnpm --filter doc-meeting-selector build",
+    "build": "pnpm run build:vue-meeting-selector && pnpm run build:react-meeting-selector && pnpm run build:docs && pnpm run build:vue-meeting-selector-dev && pnpm run build:react-meeting-selector-dev",
+    "lint": "pnpm -r run lint",
+    "test": "pnpm -r run test",
+    "coverage": "pnpm -r run coverage"
   },
-  "dependencies": {
-    "vue": "^3.2.41"
-  },
-  "devDependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.2.0",
-    "@fortawesome/free-brands-svg-icons": "^6.2.0",
-    "@fortawesome/free-regular-svg-icons": "^6.2.0",
-    "@fortawesome/free-solid-svg-icons": "^6.2.0",
-    "@fortawesome/vue-fontawesome": "^3.0.2",
-    "@highlightjs/vue-plugin": "^2.1.0",
-    "@rushstack/eslint-patch": "^1.2.0",
-    "@types/jsdom": "^20.0.0",
-    "@types/node": "^16.18.11",
-    "@vitejs/plugin-vue": "^3.1.2",
-    "@vue/eslint-config-airbnb": "^7.0.0",
-    "@vue/eslint-config-typescript": "^11.0.0",
-    "@vue/test-utils": "^2.1.0",
-    "@vue/tsconfig": "^0.1.3",
-    "cirrus-ui": "^0.7.1",
-    "eslint": "^8.22.0",
-    "eslint-plugin-vue": "^9.3.0",
-    "highlight.js": "^11.6.0",
-    "jsdom": "^20.0.1",
-    "npm-run-all": "^4.1.5",
-    "pinia": "^2.0.23",
-    "prettier": "^2.7.1",
-    "typescript": "~4.7.4",
-    "vite": "^3.1.8",
-    "vitest": "^0.24.3",
-    "vue-tsc": "^1.0.9"
-  }
+  "keywords": [],
+  "author": "pique.valere@gmx.fr",
+  "license": "MIT",
+  "packageManager": "pnpm@10.13.1"
 }

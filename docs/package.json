@@ -1,0 +1,28 @@
+{
+  "name": "doc-meeting-selector",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "keywords": [],
+  "author": "pique.valere@gmx.fr",
+  "license": "MIT",
+  "packageManager": "pnpm@10.13.1",
+  "devDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "vitepress": "^1.6.3"
+  },
+  "dependencies": {
+    "react": "catalog:",
+    "react-meeting-selector": "workspace:^",
+    "react-meeting-selector-dev": "workspace:^",
+    "vue": "catalog:",
+    "vue-component-type-helpers": "^3.0.3",
+    "vue-meeting-selector": "workspace:^"
+  }
+}

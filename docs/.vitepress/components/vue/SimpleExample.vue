@@ -1,0 +1,1 @@
+../../../../devs/vue-meeting-selector-dev/src/components/SimpleExample.vue

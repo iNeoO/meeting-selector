@@ -1,0 +1,58 @@
+name: Deploy docs
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to deploy'
+        required: true
+        default: 'main'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    # On mappe les secrets dans env pour pouvoir les utiliser dans `if:`
+    env:
+      SSH_PORT: ${{ secrets.SSH_PORT }}
+      SSH_USER: ${{ secrets.SSH_USER }}
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # tu voulais déployer une branche choisie manuellement, donc on l’utilise ici
+          ref: ${{ github.event.inputs.branch }}
+
+      - name: Setup SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add server to known_hosts
+        if: ${{ env.KNOWN_HOSTS != '' }}
+        run: |
+          mkdir -p ~/.ssh
+          umask 077
+          # supporte les entrées multi-lignes
+          printf "%s\n" "$KNOWN_HOSTS" >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Pull latest + build docs on VPS
+        run: |
+          SSH_OPTS=""
+          if [ -z "$KNOWN_HOSTS" ]; then
+            SSH_OPTS="-o StrictHostKeyChecking=accept-new"
+          fi
+
+          ssh $SSH_OPTS -p "$SSH_PORT" \
+            "$SSH_USER@$SSH_HOST" \
+            "set -euo pipefail
+            cd ~/github/ineoo/meeting-selector
+            git fetch origin ${{ github.event.inputs.branch }}
+            git checkout ${{ github.event.inputs.branch }}
+            git pull --rebase origin ${{ github.event.inputs.branch }}
+            pnpm install --frozen-lockfile
+            pnpm run build:docs"

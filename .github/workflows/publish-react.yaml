@@ -1,0 +1,33 @@
+name: Publish package
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to pull'
+        required: true
+        default: 'main'
+
+permissions:
+  contents: read
+  id-token: write # required for OIDC
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm i -g npm@latest
+      - uses: pnpm/action-setup@v4
+        with: { version: 9, run_install: false }
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build:react-meeting-selector
+      - name: Publish
+        run: npm publish
