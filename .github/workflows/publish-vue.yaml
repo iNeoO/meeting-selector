@@ -9,7 +9,6 @@ on:
         default: 'master'
 
 permissions:
-  id-token: write
   contents: read
 
 jobs:
@@ -24,14 +23,15 @@ jobs:
         with:
           node-version: '22'
           registry-url: 'https://registry.npmjs.org'
+          always-auth: true
 
       - uses: pnpm/action-setup@v4
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build:vue-meeting-selector
 
-      - run: npm config set provenance true
-
       - name: Publish
         working-directory: packages/vue-meeting-selector
-        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.VUE_NPM_TOKEN }}
+        run: npm publish --access public
