@@ -1,58 +1,37 @@
-name: Deploy docs
+name: build docs
 
 on:
   workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Branch to deploy'
-        required: true
-        default: 'main'
 
 jobs:
-  deploy:
+  sanity:
     runs-on: ubuntu-latest
-
-    # On mappe les secrets dans env pour pouvoir les utiliser dans `if:`
-    env:
-      SSH_PORT: ${{ secrets.SSH_PORT }}
-      SSH_USER: ${{ secrets.SSH_USER }}
-      SSH_HOST: ${{ secrets.SSH_HOST }}
-      KNOWN_HOSTS: ${{ secrets.KNOWN_HOSTS }}
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          # tu voulais déployer une branche choisie manuellement, donc on l’utilise ici
-          ref: ${{ github.event.inputs.branch }}
-
-      - name: Setup SSH agent
+      - name: Start SSH agent
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: |
+            ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Add server to known_hosts
-        if: ${{ env.KNOWN_HOSTS != '' }}
+      - name: Add host to known_hosts
         run: |
-          mkdir -p ~/.ssh
-          umask 077
-          # supporte les entrées multi-lignes
-          printf "%s\n" "$KNOWN_HOSTS" >> ~/.ssh/known_hosts
-          chmod 600 ~/.ssh/known_hosts
+          ssh-keyscan -p "${{ secrets.SSH_PORT || '22' }}" "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
 
-      - name: Pull latest + build docs on VPS
+      - name: Rebase on master and build docs (remote)
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
         run: |
-          SSH_OPTS=""
-          if [ -z "$KNOWN_HOSTS" ]; then
-            SSH_OPTS="-o StrictHostKeyChecking=accept-new"
-          fi
-
-          ssh $SSH_OPTS -p "$SSH_PORT" \
-            "$SSH_USER@$SSH_HOST" \
-            "set -euo pipefail
-            cd ~/github/ineoo/meeting-selector
-            git fetch origin ${{ github.event.inputs.branch }}
-            git checkout ${{ github.event.inputs.branch }}
-            git pull --rebase origin ${{ github.event.inputs.branch }}
-            pnpm install --frozen-lockfile
-            pnpm run build:docs"
+          set -euo pipefail
+          ssh -o StrictHostKeyChecking=yes -p "${SSH_PORT:-22}" "$SSH_USER@$SSH_HOST" <<'EOF'
+          set -e
+          REPO_DIR="$HOME/github/ineoo/meeting-selector"
+          test -d "$REPO_DIR/.git" || { echo "Repo not found at $REPO_DIR"; exit 2; }
+          cd "$REPO_DIR"
+          git pull --rebase origin master
+          pnpm install --no-frozen-lockfile
+          pnpm run build:react-meeting-selector
+          pnpm run build:vue-meeting-selector
+          pnpm run build:docs
+          EOF

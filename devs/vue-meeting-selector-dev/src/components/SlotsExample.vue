@@ -32,7 +32,9 @@
           class="button-pagination"
           :disabled="isPreviousDisabled || loading"
           @click="previousDate"
-        ></button>
+        >
+          &lt;
+        </button>
       </template>
       <template #button-next-date>
         <button type="button" @click="nextDate" :disabled="loading" class="button-pagination">
