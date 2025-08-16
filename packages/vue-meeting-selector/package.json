@@ -62,5 +62,9 @@
     "vite-plugin-vue-devtools": "^7.7.7",
     "vitest": "catalog:",
     "vue-tsc": "catalog:"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }
