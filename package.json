@@ -1,6 +1,6 @@
 {
   "name": "meeting-selector",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Monorepo for meeting-selector components",
   "scripts": {
     "dev:vue-meeting-selector": "pnpm --filter vue-meeting-selector dev & pnpm --filter vue-meeting-selector-dev dev ",
