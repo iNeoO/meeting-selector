@@ -398,4 +398,41 @@ describe('MeetingSelector', () => {
     expect(screen.getByText('Previous')).toBeInTheDocument();
     expect(screen.getByText('Up')).toBeInTheDocument();
   });
+
+  it('single select: clicking a different slot replaces the current value', async () => {
+  const days = makeDays([
+    {
+      date: '2025-08-10',
+      slots: [
+        '2025-08-10T08:00:00Z', // current selection
+        '2025-08-10T09:00:00Z', // click this
+        '2025-08-10T10:00:00Z',
+      ],
+    },
+  ]);
+
+  const { emitted } = render(MeetingSelector, {
+    props: {
+      meetingsByDays: days as unknown as AnyDay[],
+      dateFieldKey: 'date',
+      meetingSlotsKey: 'slots',
+      date: new Date('2025-08-10'),
+      calendarOptions: {
+        limit: 3,
+        spacing: 3,
+        daysLabel: [],
+        monthsLabel: [],
+        disabledDate: () => false,
+      },
+      modelValue: { date: '2025-08-10T08:00:00Z' },
+      skip: 0,
+    },
+  });
+
+  await fireEvent.click(screen.getByRole('button', { name: '09:00' }));
+
+  expect(emitted()['update:modelValue']?.[0]).toEqual([{ date: '2025-08-10T09:00:00Z' }]);
+  expect(emitted().change?.[0]).toEqual([{ date: '2025-08-10T09:00:00Z' }]);
+});
+
 });

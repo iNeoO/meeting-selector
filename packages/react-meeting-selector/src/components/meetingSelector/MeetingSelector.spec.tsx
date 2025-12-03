@@ -436,4 +436,44 @@ describe('MeetingSelector', () => {
     expect(screen.getByText('Previous')).toBeInTheDocument();
     expect(screen.getByText('Up')).toBeInTheDocument();
   });
+
+  it('single select: clicking a different slot replaces the current value', () => {
+  const handleMeetingSlotClick = vi.fn();
+
+  const days = makeDays([
+    {
+      date: '2025-08-10',
+      slots: [
+        '2025-08-10T08:00:00Z',
+        '2025-08-10T09:00:00Z', // will click this one
+        '2025-08-10T10:00:00Z',
+      ],
+    },
+  ]);
+
+  render(
+    <MeetingSelector
+      meetingsByDays={days}
+      dateFieldKey="date"
+      meetingSlotsKey="slots"
+      date={new Date('2025-08-10')}
+      calendarOptions={{
+        limit: 3,
+        spacing: 3,
+        daysLabel: [],
+        monthsLabel: [],
+        disabledDate: () => false,
+      }}
+      value={{ date: '2025-08-10T08:00:00Z' }}
+      handleValueChange={handleMeetingSlotClick}
+      skip={0}
+      handleSkipChange={() => {}}
+    />,
+  );
+
+  const target = hhmmLocal('2025-08-10T09:00:00Z');
+  fireEvent.click(screen.getByRole('button', { name: target }));
+
+  expect(handleMeetingSlotClick).toHaveBeenCalledWith({ date: '2025-08-10T09:00:00Z' });
+});
 });
