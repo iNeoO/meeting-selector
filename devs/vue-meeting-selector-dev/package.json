@@ -34,8 +34,8 @@
     "oxlint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:",
-    "vite": "npm:rolldown-vite@latest",
-    "vite-plugin-vue-devtools": "^7.7.7",
+    "vite": "7.2.6",
+    "vite-plugin-vue-devtools": "^8.0.5",
     "vue-tsc": "catalog:"
   }
 }

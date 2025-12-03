@@ -6,13 +6,14 @@ catalog:
   vue: ^3.5.17
   react: ^19.1.0
   react-dom: ^19.1.0
+  '@types/node': '^24.10.1'
   '@types/react': '^19.1.8'
   '@types/react-dom': '^19.1.6'
-  vitest: ^3.2.4
-  '@vitest/coverage-v8': ^3.2.4
+  vitest: ^4.0.14
+  '@vitest/coverage-v8': ^4.0.14
   typescript: ^5.8.3
-  eslint: ^9.30.1
-  '@eslint/js': ^9.30.1
+  eslint: ^9.39.1
+  '@eslint/js': ^9.39.1
   chokidar-cli: ^3.0.0
   npm-run-all2: ^8.0.4
   vue-tsc: ^2.2.10

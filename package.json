@@ -19,5 +19,15 @@
   "keywords": [],
   "author": "pique.valere@gmx.fr",
   "license": "MIT",
-  "packageManager": "pnpm@10.13.1"
+  "packageManager": "pnpm@10.13.1",
+  "pnpm": {
+    "overrides": {
+      "@docsearch/react": "^4.3.2",
+      "@docsearch/js": "^4.3.2",
+      "glob": "^10.5.0",
+      "esbuild": "^0.25.0",
+      "js-yaml": "^4.1.1",
+      "mdast-util-to-hast": "^13.2.1"
+    }
+  }
 }

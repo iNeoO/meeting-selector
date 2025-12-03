@@ -2,9 +2,6 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "declaration": true,
-    "declarationDir": "dist",
-    "emitDeclarationOnly": true,
     "strict": true,
     "moduleResolution": "Bundler",
     "esModuleInterop": true,
@@ -12,12 +9,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    },
-    "types": ["vitest/globals", "@testing-library/jest-dom"]
+    "paths": { "@/*": ["./src/*"] },
+    "declaration": true,
+    "declarationDir": "dist",
+    "emitDeclarationOnly": true,
+    "types": ["vite/client"]
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "**/*.spec.{ts,tsx}", "setupTests.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "env.d.ts"],
+  "exclude": ["node_modules", "dist", "**/*.spec.*", "**/*.test.*", "setupTests.ts"]
 }

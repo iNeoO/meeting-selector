@@ -9,9 +9,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": ".",
-    "paths": { "@/*": ["src/*"] },
-
+    "paths": { "@/*": ["./src/*"] },
     "declaration": true,
     "declarationDir": "dist",
     "emitDeclarationOnly": true,
