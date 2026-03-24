@@ -27,7 +27,20 @@
       "glob": "^10.5.0",
       "esbuild": "^0.25.0",
       "js-yaml": "^4.1.1",
-      "mdast-util-to-hast": "^13.2.1"
+      "mdast-util-to-hast": "^13.2.1",
+      "flat-cache>flatted": "^3.4.2",
+      "eslint>ajv": "^6.14.0",
+      "sass-embedded>immutable": "^5.1.5",
+      "vite>rollup": "^4.59.0",
+      "eslint>minimatch": "^3.1.4",
+      "@microsoft/api-extractor>minimatch": "^3.1.4",
+      "@microsoft/api-extractor>lodash": "^4.17.23",
+      "editorconfig>minimatch": "^9.0.7",
+      "@vue/language-core>minimatch": "^9.0.7",
+      "@typescript-eslint/typescript-estree>minimatch": "^9.0.7",
+      "@testing-library/jest-dom>lodash": "^4.17.23",
+      "@microsoft/tsdoc-config>ajv": "^8.18.0",
+      "@rushstack/node-core-library>ajv": "^8.18.0"
     }
   }
 }
