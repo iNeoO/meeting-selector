@@ -1,6 +1,6 @@
 {
   "name": "react-meeting-selector",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "type": "module",
   "main": "dist/react-meeting-selector.umd.js",
