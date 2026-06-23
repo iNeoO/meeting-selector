@@ -30,8 +30,10 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "common-meeting-selector": "workspace:^",
-    "vue": "catalog:"
+    "common-meeting-selector": "workspace:^"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "catalog:",
