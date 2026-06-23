@@ -14,6 +14,7 @@ export default defineConfig({
     }),
   ],
   build: {
+    target: 'esnext',
     lib: {
       entry: fileURLToPath(new URL('./src/main.ts', import.meta.url)),
       name: 'react-meeting-selector',

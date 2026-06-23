@@ -1,6 +1,6 @@
 {
   "name": "vue-meeting-selector",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "private": false,
   "type": "module",
   "main": "dist/vue-meeting-selector.umd.js",
@@ -30,8 +30,10 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "common-meeting-selector": "workspace:^",
-    "vue": "catalog:"
+    "common-meeting-selector": "workspace:^"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "catalog:",
@@ -44,14 +46,14 @@
     "@vitest/eslint-plugin": "^1.2.7",
     "@vue/eslint-config-prettier": "catalog:",
     "@vue/eslint-config-typescript": "catalog:",
-    "@vue/test-utils": "^2.4.6",
+    "@vue/test-utils": "^2.4.11",
     "@vue/tsconfig": "catalog:",
     "chokidar-cli": "catalog:",
     "eslint": "catalog:",
     "eslint-plugin-oxlint": "catalog:",
     "eslint-plugin-vue": "catalog:",
     "jiti": "catalog:",
-    "jsdom": "^26.1.0",
+    "jsdom": "^29.1.1",
     "npm-run-all2": "catalog:",
     "oxlint": "catalog:",
     "prettier": "catalog:",

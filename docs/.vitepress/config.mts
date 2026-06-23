@@ -2,6 +2,9 @@ import { defineConfig } from 'vitepress';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  vite: {
+    build: { target: 'esnext' },
+  },
   title: 'meeting-selector',
   description: 'Documentation for meeting-selector',
   themeConfig: {

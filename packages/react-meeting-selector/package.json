@@ -1,6 +1,6 @@
 {
   "name": "react-meeting-selector",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "type": "module",
   "main": "dist/react-meeting-selector.umd.js",
@@ -25,9 +25,11 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "common-meeting-selector": "workspace:*",
-    "react": "catalog:",
-    "react-dom": "catalog:"
+    "common-meeting-selector": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@eslint/js": "catalog:",

@@ -22,25 +22,26 @@
   "packageManager": "pnpm@10.13.1",
   "pnpm": {
     "overrides": {
-      "@docsearch/react": "^4.3.2",
-      "@docsearch/js": "^4.3.2",
-      "glob": "^10.5.0",
-      "esbuild": "^0.25.0",
-      "js-yaml": "^4.1.1",
-      "mdast-util-to-hast": "^13.2.1",
+      "js-yaml": "^4.2.0",
+      "esbuild": "^0.28.1",
       "flat-cache>flatted": "^3.4.2",
       "eslint>ajv": "^6.14.0",
       "sass-embedded>immutable": "^5.1.5",
-      "vite>rollup": "^4.59.0",
       "eslint>minimatch": "^3.1.4",
       "@microsoft/api-extractor>minimatch": "^3.1.4",
-      "@microsoft/api-extractor>lodash": "^4.17.23",
+      "@microsoft/api-extractor>lodash": "^4.18.0",
+      "@microsoft/tsdoc-config>ajv": "^8.18.0",
+      "@rushstack/node-core-library>ajv": "^8.18.0",
       "editorconfig>minimatch": "^9.0.7",
       "@vue/language-core>minimatch": "^9.0.7",
       "@typescript-eslint/typescript-estree>minimatch": "^9.0.7",
-      "@testing-library/jest-dom>lodash": "^4.17.23",
-      "@microsoft/tsdoc-config>ajv": "^8.18.0",
-      "@rushstack/node-core-library>ajv": "^8.18.0"
+      "@testing-library/jest-dom>lodash": "^4.18.0",
+      "micromatch>picomatch": "^2.3.2",
+      "anymatch>picomatch": "^2.3.2",
+      "readdirp>picomatch": "^2.3.2",
+      "@rollup/pluginutils>picomatch": "^4.0.4",
+      "vitepress>vite": "^6.4.3",
+      "js-cookie": "^3.0.7"
     }
   }
 }
