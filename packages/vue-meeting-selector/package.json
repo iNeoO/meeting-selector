@@ -1,6 +1,6 @@
 {
   "name": "vue-meeting-selector",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "private": false,
   "type": "module",
   "main": "dist/vue-meeting-selector.umd.js",
@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "common-meeting-selector": "workspace:^",
+    "@microsoft/api-extractor": "^7.52.8",
     "@testing-library/jest-dom": "catalog:",
     "@testing-library/vue": "^8.1.0",
     "@tsconfig/node22": "catalog:",

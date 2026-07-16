@@ -11,6 +11,9 @@ export default defineConfig({
     dts({
       entryRoot: 'src',
       insertTypesEntry: true,
+      bundleTypes: {
+        bundledPackages: ['common-meeting-selector'],
+      },
     }),
   ],
   build: {
@@ -22,11 +25,13 @@ export default defineConfig({
     },
     cssCodeSplit: true,
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'jsxRuntime',
+          'react/jsx-dev-runtime': 'jsxDevRuntime',
         },
       },
     },

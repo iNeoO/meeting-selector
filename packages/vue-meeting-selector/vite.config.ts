@@ -13,6 +13,9 @@ export default defineConfig({
     dts({
       entryRoot: 'src',
       insertTypesEntry: true,
+      bundleTypes: {
+        bundledPackages: ['common-meeting-selector'],
+      },
     }),
   ],
   build: {
