@@ -1,8 +1,9 @@
 {
   "name": "vue-meeting-selector",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "private": false,
   "type": "module",
+  "files": ["dist"],
   "main": "dist/vue-meeting-selector.umd.js",
   "module": "dist/vue-meeting-selector.es.js",
   "types": "dist/index.d.ts",
