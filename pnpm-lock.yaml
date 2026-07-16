@@ -287,9 +287,6 @@ importers:
 
   packages/react-meeting-selector:
     dependencies:
-      common-meeting-selector:
-        specifier: workspace:*
-        version: link:../common
       react:
         specifier: ^18.0.0 || ^19.0.0
         version: 19.1.0
@@ -327,6 +324,9 @@ importers:
       chokidar-cli:
         specifier: 'catalog:'
         version: 3.0.0
+      common-meeting-selector:
+        specifier: workspace:*
+        version: link:../common
       eslint:
         specifier: 'catalog:'
         version: 9.39.1(jiti@2.4.2)
@@ -363,9 +363,6 @@ importers:
 
   packages/vue-meeting-selector:
     dependencies:
-      common-meeting-selector:
-        specifier: workspace:^
-        version: link:../common
       vue:
         specifier: ^3.0.0
         version: 3.5.17(typescript@5.8.3)
@@ -409,6 +406,9 @@ importers:
       chokidar-cli:
         specifier: 'catalog:'
         version: 3.0.0
+      common-meeting-selector:
+        specifier: workspace:^
+        version: link:../common
       eslint:
         specifier: 'catalog:'
         version: 9.39.1(jiti@2.4.2)
