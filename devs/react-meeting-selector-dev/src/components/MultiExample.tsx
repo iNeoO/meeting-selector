@@ -16,7 +16,7 @@ export const MultiExample = () => {
   const initialDateRef = React.useRef(date);
   const [skip, setSkip] = React.useState(0);
   const [value, setValue] = React.useState<MeetingSlotGenerated[]>([]);
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
   const [meetingsDays, setMeetingsDays] = React.useState<MeetingsByDayGenerated[]>(
     generatePlaceHolder(date, nbDaysToDisplay)
   );
@@ -85,7 +85,6 @@ export const MultiExample = () => {
   }, [date, generateMeetingsByDaysAsync]);
 
   React.useEffect(() => {
-    setLoading(true);
     (async () => {
       const start: Time = {
         hours: 8,
