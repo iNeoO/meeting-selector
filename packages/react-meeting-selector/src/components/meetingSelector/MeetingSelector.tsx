@@ -1,4 +1,4 @@
-import { type HTMLAttributes, useEffect, useMemo, useState, useCallback } from 'react';
+import { type HTMLAttributes, useMemo, useState, useCallback } from 'react';
 import 'common-meeting-selector/style';
 import 'common-meeting-selector/icons';
 import {
@@ -92,21 +92,16 @@ export const MeetingSelectorComponent = <
   );
 
   const isControlled = typeof skip === 'number';
-  const [internalSkip, setInternalSkip] = useState(isControlled ? skip : 0);
+  const [uncontrolledSkip, setUncontrolledSkip] = useState(0);
+  const internalSkip = isControlled ? skip : uncontrolledSkip;
 
   const setSkip = (newSkip: number) => {
     if (isControlled) {
       handleSkipChange?.(newSkip);
     } else {
-      setInternalSkip(newSkip);
+      setUncontrolledSkip(newSkip);
     }
   };
-
-  useEffect(() => {
-    if (isControlled) {
-      setInternalSkip(skip);
-    }
-  }, [skip, isControlled]);
 
   const maxNbMeetings = useMemo(() => {
     if (!meetingsByDays.length) {
